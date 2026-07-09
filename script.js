@@ -6,30 +6,104 @@ document.getElementById("overlay").classList.toggle("active");
 
 }
 
-// داده‌ها
-
 let users = JSON.parse(localStorage.getItem("users")) || [];
 
-updateDashboard();
+function showPage(page){
 
-function updateDashboard(){
+document.getElementById("dashboard-page")?.style.setProperty("display","none");
 
-document.getElementById("usersCount").innerHTML = users.length;
+document.getElementById("users-page").style.display="none";
 
-document.getElementById("configsCount").innerHTML = users.length;
+document.getElementById("configs-page").style.display="none";
 
-document.getElementById("activeCount").innerHTML = users.length;
+document.getElementById("settings-page").style.display="none";
+
+document.getElementById("github-page").style.display="none";
+
+document.getElementById(page+"-page").style.display="block";
 
 }
 
-function saveUsers(){
+function createUser(){
+
+let name=document.getElementById("username").value;
+
+let protocol=document.getElementById("protocol").value;
+
+let volume=document.getElementById("volume").value;
+
+if(name=="") return;
+
+users.push({
+
+name,
+
+protocol,
+
+volume
+
+});
 
 localStorage.setItem("users",JSON.stringify(users));
 
-updateDashboard();
+renderUsers();
 
 }
 
-// تست
+function renderUsers(){
 
-console.log("Shahin Panel Loaded");
+let box=document.getElementById("usersList");
+
+let cfg=document.getElementById("configsList");
+
+if(!box)return;
+
+box.innerHTML="";
+
+cfg.innerHTML="";
+
+users.forEach((u,i)=>{
+
+box.innerHTML+=`
+<div class="user">
+🦅 ${u.name}
+<br>
+${u.protocol}
+-
+${u.volume}GB
+</div>
+`;
+
+cfg.innerHTML+=`
+<div class="user">
+کانفیگ ${u.name}
+</div>
+`;
+
+});
+
+}
+
+function saveSettings(){
+
+let link=document.getElementById("githubLink").value;
+
+localStorage.setItem("githubLink",link);
+
+document.getElementById("githubText").innerHTML=link;
+
+}
+
+window.onload=function(){
+
+renderUsers();
+
+let link=localStorage.getItem("githubLink");
+
+if(link){
+
+document.getElementById("githubText").innerHTML=link;
+
+}
+
+};
