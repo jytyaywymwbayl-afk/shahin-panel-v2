@@ -7,171 +7,392 @@
 <title>شاهین پنل</title>
 
 <style>
-body{
-    margin:0;
-    background:#0b0f14;
-    color:white;
-    font-family:tahoma;
-    padding:20px;
+
+*{
+box-sizing:border-box;
+font-family:tahoma;
 }
+
+body{
+margin:0;
+background:#080c12;
+color:white;
+}
+
+.container{
+display:flex;
+min-height:100vh;
+}
+
+/* Sidebar */
+
+.sidebar{
+width:240px;
+background:#111820;
+padding:20px;
+}
+
+.logo{
+font-size:28px;
+color:#00d4ff;
+font-weight:bold;
+margin-bottom:30px;
+}
+
+.menu{
+background:#1b2633;
+padding:15px;
+border-radius:12px;
+margin-bottom:10px;
+cursor:pointer;
+}
+
+.menu:hover{
+background:#00d4ff;
+color:#000;
+}
+
+
+/* Main */
+
+.main{
+flex:1;
+padding:25px;
+}
+
 
 .header{
-    background:#151b23;
-    padding:20px;
-    border-radius:20px;
-    text-align:center;
+background:#111820;
+padding:20px;
+border-radius:20px;
+display:flex;
+justify-content:space-between;
 }
 
-h1{
-    color:#00d4ff;
-}
 
 .cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-    gap:15px;
-    margin-top:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-top:20px;
 }
+
 
 .card{
-    background:#151b23;
-    padding:20px;
-    border-radius:15px;
-    text-align:center;
+background:#111820;
+padding:25px;
+border-radius:20px;
+text-align:center;
 }
+
 
 .number{
-    font-size:30px;
-    color:#00d4ff;
-    font-weight:bold;
+font-size:35px;
+color:#00d4ff;
+font-weight:bold;
 }
+
+
+
+/* Boxes */
 
 .box{
-    background:#151b23;
-    margin-top:20px;
-    padding:20px;
-    border-radius:20px;
+background:#111820;
+padding:20px;
+border-radius:20px;
+margin-top:20px;
 }
+
 
 input,select{
-    width:95%;
-    padding:12px;
-    margin:8px;
-    background:#222b36;
-    color:white;
-    border:0;
-    border-radius:10px;
+
+width:100%;
+padding:13px;
+margin:8px 0;
+
+background:#1b2633;
+border:0;
+
+border-radius:10px;
+
+color:white;
+
 }
+
 
 button{
-    width:100%;
-    padding:13px;
-    background:#00d4ff;
-    border:0;
-    border-radius:10px;
-    font-weight:bold;
+
+width:100%;
+padding:13px;
+
+background:#00d4ff;
+
+border:0;
+
+border-radius:10px;
+
+font-weight:bold;
+
+cursor:pointer;
+
 }
 
+
+
 .user{
-    background:#222b36;
-    padding:12px;
-    margin-top:10px;
-    border-radius:10px;
+
+background:#1b2633;
+
+padding:15px;
+
+margin-top:10px;
+
+border-radius:12px;
+
 }
+
+
+@media(max-width:700px){
+
+.sidebar{
+display:none;
+}
+
+}
+
 </style>
 
 </head>
 
+
 <body>
 
-<div class="header">
-<h1>🦅 شاهین پنل</h1>
-<p>پنل مدیریت کانفیگ</p>
+
+<div class="container">
+
+
+<div class="sidebar">
+
+
+<div class="logo">
+🦅 شاهین
 </div>
+
+
+<div class="menu">
+🏠 داشبورد
+</div>
+
+
+<div class="menu">
+👥 کاربران
+</div>
+
+
+<div class="menu">
+⚙ تنظیمات
+</div>
+
+
+<div class="menu">
+🔑 تغییر رمز
+</div>
+
+
+</div>
+
+
+
+
+<div class="main">
+
+
+<div class="header">
+
+<h2>
+پنل مدیریت
+</h2>
+
+<span>
+مدیر: admin
+</span>
+
+
+</div>
+
+
 
 
 <div class="cards">
 
+
 <div class="card">
-<div class="number" id="users">0</div>
+
+<div class="number" id="users">
+0
+</div>
+
 کاربران
+
 </div>
+
+
 
 <div class="card">
-<div class="number" id="configs">0</div>
-کانفیگ‌ها
+
+<div class="number" id="configs">
+0
 </div>
 
+کانفیگ‌ها
+
 </div>
+
+
+
+<div class="card">
+
+<div class="number">
+∞
+</div>
+
+حجم
+
+</div>
+
+
+</div>
+
+
+
 
 
 <div class="box">
 
-<h2>ساخت کانفیگ</h2>
+
+<h2>
+ساخت کانفیگ جدید
+</h2>
+
 
 <input id="name" placeholder="نام کاربر">
 
+
 <select>
-<option>VLESS</option>
-<option>VMESS</option>
+
+<option>
+VLESS
+</option>
+
+<option>
+VMESS
+</option>
+
+
 </select>
 
-<input placeholder="حجم (GB)">
 
-<button onclick="createUser()">
+<input placeholder="حجم GB">
+
+
+<button onclick="create()">
 ساخت کانفیگ
 </button>
 
+
 </div>
+
+
+
 
 
 <div class="box">
 
-<h2>کاربران</h2>
+
+<h2>
+لیست کاربران
+</h2>
+
 
 <div id="list">
+
 <div class="user">
 هنوز کاربری ساخته نشده
 </div>
-</div>
 
 </div>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
 
 
 <script>
 
+
 let count=0;
 
-function createUser(){
+
+function create(){
+
 
 let name=document.getElementById("name").value;
 
+
 if(name==""){
+
 alert("نام کاربر را وارد کنید");
+
 return;
+
 }
+
 
 count++;
 
+
 document.getElementById("users").innerHTML=count;
+
 document.getElementById("configs").innerHTML=count;
 
 
+
 document.getElementById("list").innerHTML +=
+
 `
+
 <div class="user">
+
 🦅 ${name}
+
 <br>
+
 وضعیت: فعال
+
 <br>
+
 کانفیگ ساخته شد
+
 </div>
+
 `;
 
+
 }
+
 
 </script>
 
 
 </body>
+
 </html>
