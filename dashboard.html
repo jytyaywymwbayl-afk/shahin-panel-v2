@@ -98,6 +98,92 @@
 </div>
 
 </div>
+<!-- صفحه کاربران -->
+
+<div id="users-page" style="display:none;">
+
+<div class="box">
+
+<h2>کاربران</h2>
+
+<input id="username" placeholder="نام کاربر">
+
+<select id="protocol">
+
+<option>VLESS</option>
+
+<option>VMESS</option>
+
+<option>Trojan</option>
+
+</select>
+
+<input id="volume" placeholder="حجم (GB)">
+
+<button onclick="createUser()">
+
+ساخت کاربر
+
+</button>
+
+<div id="usersList"></div>
+
+</div>
+
+</div>
+<!-- صفحه کانفیگ -->
+
+<div id="configs-page" style="display:none;">
+
+<div class="box">
+
+<h2>کانفیگ‌ها</h2>
+
+<div id="configsList">
+
+هنوز کانفیگی ساخته نشده
+
+</div>
+
+</div>
+
+</div>
+<!-- صفحه تنظیمات -->
+
+<div id="settings-page" style="display:none;">
+
+<div class="box">
+
+<h2>تنظیمات</h2>
+
+<input id="githubLink" placeholder="لینک GitHub">
+
+<button onclick="saveSettings()">
+
+ذخیره تنظیمات
+
+</button>
+
+</div>
+
+</div>
+<!-- صفحه GitHub -->
+
+<div id="github-page" style="display:none;">
+
+<div class="box">
+
+<h2>GitHub</h2>
+
+<p id="githubText">
+
+لینکی ثبت نشده است.
+
+</p>
+
+</div>
+
+</div>
 
 <script src="script.js"></script>
 
