@@ -53,6 +53,52 @@ renderUsers();
 function renderUsers(){
 
 let box=document.getElementById("usersList");
+let cfg=document.getElementById("configsList");
+
+if(box) box.innerHTML="";
+if(cfg) cfg.innerHTML="";
+
+users.forEach((u,i)=>{
+
+if(box){
+
+box.innerHTML+=`
+<div class="user">
+
+<b>${u.name}</b><br>
+
+پروتکل : ${u.protocol}<br>
+
+حجم : ${u.volume}GB<br><br>
+
+<button onclick="deleteUser(${i})">حذف</button>
+
+</div>
+`;
+
+}
+
+if(cfg){
+
+cfg.innerHTML+=`
+<div class="user">
+
+🔗 کانفیگ ${u.name}
+
+</div>
+`;
+
+}
+
+});
+
+document.getElementById("usersCount").innerHTML=users.length;
+document.getElementById("configsCount").innerHTML=users.length;
+document.getElementById("activeCount").innerHTML=users.length;
+
+}
+
+let box=document.getElementById("usersList");
 
 let cfg=document.getElementById("configsList");
 
@@ -107,3 +153,91 @@ document.getElementById("githubText").innerHTML=link;
 }
 
 };
+function deleteUser(index){
+
+if(confirm("کاربر حذف شود؟")){
+
+users.splice(index,1);
+
+localStorage.setItem("users",JSON.stringify(users));
+
+renderUsers();
+
+}
+
+}
+window.onload=function(){
+
+let savedUsers=localStorage.getItem("users");
+
+if(savedUsers){
+
+users=JSON.parse(savedUsers);
+
+}
+
+renderUsers();
+
+let github=localStorage.getItem("githubLink");
+
+if(github){
+
+document.getElementById("githubText").innerHTML=
+`<a href="${github}" target="_blank">${github}</a>`;
+
+document.getElementById("githubLink").value=github;
+
+}
+
+showPage("dashboard");
+
+}
+document.addEventListener("DOMContentLoaded",()=>{
+
+document.querySelectorAll(".menu-item").forEach(item=>{
+
+item.addEventListener("click",function(){
+
+document.querySelectorAll(".menu-item").forEach(i=>i.classList.remove("active"));
+
+this.classList.add("active");
+
+});
+
+});
+
+});
+function updateCards(){
+
+document.getElementById("usersCount").innerHTML=users.length;
+
+document.getElementById("configsCount").innerHTML=users.length;
+
+document.getElementById("activeCount").innerHTML=users.length;
+
+}
+
+const oldRenderUsers=renderUsers;
+
+renderUsers=function(){
+
+oldRenderUsers();
+
+updateCards();
+
+}
+function openGithub(){
+
+let link=localStorage.getItem("githubLink");
+
+if(link && link.trim()!==""){
+
+window.open(link,"_blank");
+
+}else{
+
+alert("ابتدا لینک GitHub را در تنظیمات وارد کنید.");
+
+}
+
+}
