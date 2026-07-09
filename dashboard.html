@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>شاهین پنل</title>
+
+<style>
+body{
+    margin:0;
+    background:#0b0f14;
+    color:white;
+    font-family:tahoma;
+    padding:20px;
+}
+
+.header{
+    background:#151b23;
+    padding:20px;
+    border-radius:20px;
+    text-align:center;
+}
+
+h1{
+    color:#00d4ff;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:15px;
+    margin-top:20px;
+}
+
+.card{
+    background:#151b23;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.number{
+    font-size:30px;
+    color:#00d4ff;
+    font-weight:bold;
+}
+
+.box{
+    background:#151b23;
+    margin-top:20px;
+    padding:20px;
+    border-radius:20px;
+}
+
+input,select{
+    width:95%;
+    padding:12px;
+    margin:8px;
+    background:#222b36;
+    color:white;
+    border:0;
+    border-radius:10px;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    background:#00d4ff;
+    border:0;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.user{
+    background:#222b36;
+    padding:12px;
+    margin-top:10px;
+    border-radius:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+<h1>🦅 شاهین پنل</h1>
+<p>پنل مدیریت کانفیگ</p>
+</div>
+
+
+<div class="cards">
+
+<div class="card">
+<div class="number" id="users">0</div>
+کاربران
+</div>
+
+<div class="card">
+<div class="number" id="configs">0</div>
+کانفیگ‌ها
+</div>
+
+</div>
+
+
+<div class="box">
+
+<h2>ساخت کانفیگ</h2>
+
+<input id="name" placeholder="نام کاربر">
+
+<select>
+<option>VLESS</option>
+<option>VMESS</option>
+</select>
+
+<input placeholder="حجم (GB)">
+
+<button onclick="createUser()">
+ساخت کانفیگ
+</button>
+
+</div>
+
+
+<div class="box">
+
+<h2>کاربران</h2>
+
+<div id="list">
+<div class="user">
+هنوز کاربری ساخته نشده
+</div>
+</div>
+
+</div>
+
+
+<script>
+
+let count=0;
+
+function createUser(){
+
+let name=document.getElementById("name").value;
+
+if(name==""){
+alert("نام کاربر را وارد کنید");
+return;
+}
+
+count++;
+
+document.getElementById("users").innerHTML=count;
+document.getElementById("configs").innerHTML=count;
+
+
+document.getElementById("list").innerHTML +=
+`
+<div class="user">
+🦅 ${name}
+<br>
+وضعیت: فعال
+<br>
+کانفیگ ساخته شد
+</div>
+`;
+
+}
+
+</script>
+
+
+</body>
+</html>
