@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>شاهین پنل</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#0b0f14;
+    font-family:tahoma;
+    color:white;
+}
+
+.login{
+    background:#151b23;
+    padding:30px;
+    border-radius:20px;
+    width:300px;
+    text-align:center;
+}
+
+h1{
+    color:#00d4ff;
+}
+
+input{
+    width:90%;
+    padding:12px;
+    margin:8px;
+    border:0;
+    border-radius:10px;
+    background:#222b36;
+    color:white;
+}
+
+button{
+    width:95%;
+    padding:12px;
+    margin-top:15px;
+    border:0;
+    border-radius:10px;
+    background:#00d4ff;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+#error{
+    color:#ff5252;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login">
+
+<h1>🦅 شاهین پنل</h1>
+
+<input id="user" placeholder="نام کاربری">
+
+<input id="pass" type="password" placeholder="رمز عبور">
+
+<button onclick="login()">ورود</button>
+
+<p id="error"></p>
+
+</div>
+
+
+<script>
+
+function login(){
+
+let user=document.getElementById("user").value;
+let pass=document.getElementById("pass").value;
+
+
+if(user==="admin" && pass==="123456"){
+
+window.location="dashboard.html";
+
+}else{
+
+document.getElementById("error").innerHTML="رمز یا نام کاربری اشتباه است";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
