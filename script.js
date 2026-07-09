@@ -281,3 +281,16 @@ item.style.display="none";
 });
 
 }
+function clearAllUsers(){
+
+if(confirm("تمام کاربران حذف شوند؟")){
+
+users=[];
+
+localStorage.removeItem("users");
+
+renderUsers();
+
+}
+
+}
