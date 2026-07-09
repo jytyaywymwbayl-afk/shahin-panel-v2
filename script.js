@@ -294,3 +294,18 @@ renderUsers();
 }
 
 }
+function exportBackup(){
+
+const data=JSON.stringify(users,null,2);
+
+const blob=new Blob([data],{type:"application/json"});
+
+const a=document.createElement("a");
+
+a.href=URL.createObjectURL(blob);
+
+a.download="shahin-users-backup.json";
+
+a.click();
+
+}
