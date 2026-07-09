@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>شاهین پنل - Dashboard</title>
+<title>شاهین پنل</title>
 
 <style>
 
@@ -18,72 +19,126 @@ body{
 margin:0;
 background:#080c12;
 color:white;
-display:flex;
 }
 
 
-/* Sidebar */
+/* دکمه موبایل */
 
-.sidebar{
-width:250px;
-height:100vh;
-background:#111820;
-padding:20px;
+.mobile-btn{
+display:none;
 position:fixed;
-right:0;
-}
-
-.logo{
-font-size:35px;
-text-align:center;
-margin-bottom:30px;
-}
-
-
-.menu{
-background:#18212c;
-padding:15px;
-border-radius:12px;
-margin-bottom:10px;
+top:15px;
+right:15px;
+z-index:1000;
+background:#00d4ff;
+color:#000;
+padding:10px 15px;
+border-radius:10px;
+font-size:25px;
 cursor:pointer;
 }
 
 
+/* منو */
+
+.sidebar{
+
+position:fixed;
+right:0;
+top:0;
+
+width:240px;
+height:100vh;
+
+background:#111820;
+
+padding:20px;
+
+transition:.3s;
+
+}
+
+
+.logo{
+
+font-size:35px;
+text-align:center;
+margin-bottom:30px;
+
+}
+
+
+.menu{
+
+background:#1b2633;
+
+padding:15px;
+
+border-radius:12px;
+
+margin-bottom:10px;
+
+cursor:pointer;
+
+}
+
+
 .menu:hover{
-background:#00c853;
+
+background:#00d4ff;
+color:#000;
+
 }
 
 
 
-/* Main */
+/* محتوا */
+
 
 .main{
-margin-right:270px;
+
+margin-right:260px;
+
 padding:25px;
-width:100%;
+
+transition:.3s;
+
 }
+
 
 
 .header{
+
 background:#111820;
+
 padding:20px;
+
 border-radius:20px;
+
 display:flex;
+
 justify-content:space-between;
+
 align-items:center;
+
 }
 
 
 h1{
+
 color:#00d4ff;
+
 }
 
 
 .cards{
 
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:20px;
+
+grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+
+gap:15px;
+
 margin-top:20px;
 
 }
@@ -92,8 +147,11 @@ margin-top:20px;
 .card{
 
 background:#111820;
+
 padding:25px;
+
 border-radius:20px;
+
 text-align:center;
 
 }
@@ -102,19 +160,23 @@ text-align:center;
 .number{
 
 font-size:35px;
+
 color:#00d4ff;
+
 font-weight:bold;
 
 }
 
 
-
 .box{
 
 background:#111820;
-margin-top:25px;
-padding:25px;
+
+padding:20px;
+
 border-radius:20px;
+
+margin-top:20px;
 
 }
 
@@ -122,11 +184,17 @@ border-radius:20px;
 input,select{
 
 width:100%;
-padding:14px;
+
+padding:13px;
+
 margin:8px 0;
+
 background:#202a35;
+
 border:0;
+
 border-radius:10px;
+
 color:white;
 
 }
@@ -135,11 +203,17 @@ color:white;
 button{
 
 width:100%;
-padding:14px;
-background:#00c853;
+
+padding:13px;
+
+background:#00d4ff;
+
 border:0;
+
 border-radius:10px;
+
 font-weight:bold;
+
 cursor:pointer;
 
 }
@@ -148,11 +222,94 @@ cursor:pointer;
 .user{
 
 background:#202a35;
+
 padding:15px;
+
 border-radius:12px;
+
 margin-top:10px;
 
 }
+
+
+
+.overlay{
+
+display:none;
+
+position:fixed;
+
+inset:0;
+
+background:rgba(0,0,0,.5);
+
+z-index:500;
+
+}
+
+
+
+/* حالت موبایل */
+
+@media(max-width:700px){
+
+
+.mobile-btn{
+
+display:block;
+
+}
+
+
+
+.sidebar{
+
+right:-260px;
+
+z-index:800;
+
+}
+
+
+
+.sidebar.active{
+
+right:0;
+
+}
+
+
+
+.overlay.active{
+
+display:block;
+
+}
+
+
+
+.main{
+
+margin-right:0;
+
+padding:70px 15px 20px;
+
+}
+
+
+
+.header{
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+
+
+}
+
 
 
 </style>
@@ -163,34 +320,58 @@ margin-top:10px;
 <body>
 
 
-<div class="sidebar">
+<div class="mobile-btn" onclick="menu()">
+
+☰
+
+</div>
+
+
+
+<div class="overlay" onclick="menu()"></div>
+
+
+
+<div class="sidebar" id="sidebar">
+
 
 <div class="logo">
+
 🦅
+
 </div>
 
 
 <div class="menu">
+
 🏠 داشبورد
+
 </div>
 
 
 <div class="menu">
+
 👥 کاربران
+
 </div>
 
 
 <div class="menu">
+
 ⚙️ تنظیمات
+
 </div>
 
 
 <div class="menu">
+
 🔑 امنیت
+
 </div>
 
 
 </div>
+
 
 
 
@@ -199,44 +380,60 @@ margin-top:10px;
 
 <div class="header">
 
+
 <h1>
+
 شاهین پنل
+
 </h1>
 
 
 <div>
-مدیریت پنل
+
+مدیر: admin
+
 </div>
 
 
 </div>
+
+
+
 <div class="cards">
 
 
 <div class="card">
+
 <div class="number" id="users">
+
 0
+
 </div>
 
 کاربران
-</div>
 
+</div>
 
 
 <div class="card">
+
 <div class="number" id="configs">
+
 0
+
 </div>
 
 کانفیگ ها
-</div>
 
+</div>
 
 
 <div class="card">
 
 <div class="number">
+
 ∞
+
 </div>
 
 حجم
@@ -245,210 +442,93 @@ margin-top:10px;
 
 
 </div>
-
-
-
-
 <div class="box">
 
-<h2>
-ساخت کانفیگ جدید
-</h2>
-
+<h2>ساخت کانفیگ جدید</h2>
 
 <input id="name" placeholder="نام کاربر">
 
-
-
 <select id="type">
-
-<option>
-VLESS
-</option>
-
-<option>
-VMESS
-</option>
-
-<option>
-Trojan
-</option>
-
+<option>VLESS</option>
+<option>VMESS</option>
+<option>Trojan</option>
 </select>
-
-
 
 <input id="volume" placeholder="حجم (GB)">
 
-
-
 <button onclick="createConfig()">
-
 ساخت کانفیگ
-
 </button>
-
 
 </div>
 
 
 
-
-
 <div class="box">
 
-<h2>
-لیست کاربران
-</h2>
-
+<h2>لیست کاربران</h2>
 
 <div id="list">
-
 
 <div class="user">
 هنوز کاربری ساخته نشده
 </div>
 
+</div>
+
+</div>
 
 </div>
 
 
-</div>
-
-
-
-
-
-<div class="box">
-
-<h2>
-تنظیمات پنل
-</h2>
-
-
-<p>
-وضعیت سیستم:
-<span style="color:#00c853">
-فعال
-</span>
-</p>
-
-
-<p>
-نسخه پنل: 1.0
-</p>
-
-
-<button onclick="logout()">
-خروج
-</button>
-
-
-</div>
-
-
-
-</div>
 <script>
 
+let users=0;
+let configs=0;
 
-let users = 0;
-let configs = 0;
+function menu(){
 
-
-
-function createConfig(){
-
-
-let name = document.getElementById("name").value;
-
-let type = document.getElementById("type").value;
-
-let volume = document.getElementById("volume").value;
-
-
-
-if(name==""){
-
-alert("نام کاربر را وارد کنید");
-
-return;
+document.getElementById("sidebar").classList.toggle("active");
+document.querySelector(".overlay").classList.toggle("active");
 
 }
 
+function createConfig(){
 
+let name=document.getElementById("name").value;
+let type=document.getElementById("type").value;
+let volume=document.getElementById("volume").value;
+
+if(name==""){
+alert("نام کاربر را وارد کنید");
+return;
+}
 
 users++;
 configs++;
 
+document.getElementById("users").innerHTML=users;
+document.getElementById("configs").innerHTML=configs;
 
-
-document.getElementById("users").innerHTML = users;
-
-document.getElementById("configs").innerHTML = configs;
-
-
-
-
-let list = document.getElementById("list");
-
-
-
-list.innerHTML += `
-
+document.getElementById("list").innerHTML += `
 <div class="user">
-
 🦅 ${name}
-
 <br>
-
-نوع:
-${type}
-
+نوع: ${type}
 <br>
-
-حجم:
-${volume} GB
-
+حجم: ${volume} GB
 <br>
-
 وضعیت:
-<span style="color:#00c853">
-
-فعال
-
-</span>
-
-
+<span style="color:#00c853;">فعال</span>
 </div>
-
 `;
 
-
-
 document.getElementById("name").value="";
-
 document.getElementById("volume").value="";
 
-
-
 }
-
-
-
-
-
-function logout(){
-
-window.location="index.html";
-
-}
-
-
 
 </script>
 
-
 </body>
-
 </html>
