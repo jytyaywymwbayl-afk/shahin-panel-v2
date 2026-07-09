@@ -71,7 +71,13 @@ box.innerHTML+=`
 
 حجم : ${u.volume}GB<br><br>
 
-<button onclick="deleteUser(${i})">حذف</button>
+<button onclick="exportConfig(${i})">
+کپی کانفیگ
+</button>
+
+<button onclick="deleteUser(${i})">
+حذف
+</button>
 
 </div>
 `;
@@ -239,5 +245,39 @@ window.open(link,"_blank");
 alert("ابتدا لینک GitHub را در تنظیمات وارد کنید.");
 
 }
+
+}
+function createConfig(name){
+
+return `vless://${name}@shahin-panel`;
+
+}
+
+function exportConfig(index){
+
+const cfg=createConfig(users[index].name);
+
+navigator.clipboard.writeText(cfg);
+
+alert("کانفیگ کپی شد.");
+
+}
+function searchUsers(text){
+
+text=text.toLowerCase();
+
+document.querySelectorAll("#usersList .user").forEach(item=>{
+
+if(item.innerText.toLowerCase().includes(text)){
+
+item.style.display="block";
+
+}else{
+
+item.style.display="none";
+
+}
+
+});
 
 }
